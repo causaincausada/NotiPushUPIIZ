@@ -112,18 +112,24 @@
                             <button
                               type="button"
                               class="btn btn-block btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
                             >
                               Actualizar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-danger"
+                              data-toggle="modal"
+                              data-target="#modal-Eliminar"
                             >
                               Eliminar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-Asignar"
                             >
                               Asignar
                             </button>
@@ -136,18 +142,24 @@
                             <button
                               type="button"
                               class="btn btn-block btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
                             >
                               Actualizar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-danger"
+                              data-toggle="modal"
+                              data-target="#modal-Eliminar"
                             >
                               Eliminar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-Asignar"
                             >
                               Asignar
                             </button>
@@ -160,18 +172,24 @@
                             <button
                               type="button"
                               class="btn btn-block btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
                             >
                               Actualizar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-danger"
+                              data-toggle="modal"
+                              data-target="#modal-Eliminar"
                             >
                               Eliminar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-Asignar"
                             >
                               Asignar
                             </button>
@@ -184,18 +202,24 @@
                             <button
                               type="button"
                               class="btn btn-block btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
                             >
                               Actualizar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-danger"
+                              data-toggle="modal"
+                              data-target="#modal-Eliminar"
                             >
                               Eliminar
                             </button>
                             <button
                               type="button"
                               class="btn btn-block btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-Asignar"
                             >
                               Asignar
                             </button>
@@ -228,6 +252,216 @@
       </footer>
     </div>
 
+    <div class="modal fade" id="modal-Actualizar">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Actualizar</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>No sé lo que va aquí &hellip;</p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-Eliminar">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Eliminar</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>No sé lo que va aquí&hellip;</p>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-Asignar">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Asignar a grupo</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table id="example2" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Función</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ada Lovelace</td>
+                  <td>Alumno</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-block btn-outline-danger"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Grace Hopper</td>
+                  <td>PAAE</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-block btn-outline-danger"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Margaret Hamilton</td>
+                  <td>Alumno</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-block btn-outline-danger"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Joan Clark</td>
+                  <td>Docente</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-block btn-outline-danger"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Función</th>
+                  <th>Acción</th>
+                </tr>
+              </tfoot>
+            </table>
+
+            <select class="custom-select rounded-0" style="width: 50%">
+              <option disabled="disabled" selected="selected">
+                Seleccione un grupo
+              </option>
+              <option>Becas</option>
+              <option>Credenciales</option>
+              <option>BEIFI</option>
+              <option>Delfín</option>
+            </select>
+            <button
+              type="button"
+              class="btn btn-success"
+              style="float: right; width: 30%"
+            >
+              Asignar
+            </button>
+            <br />
+            <div style="padding-top: 25px;">
+              <table id="example3" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Función</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ada Lovelace</td>
+                    <td>Alumno</td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-block btn-outline-danger"
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Grace Hopper</td>
+                    <td>PAAE</td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-block btn-outline-danger"
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Función</th>
+                    <th>Acción</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cerrar
+            </button>
+            <button type="button" class="btn btn-primary">
+              Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -253,6 +487,70 @@
     <script>
       $(function () {
         $("#example1")
+          .DataTable({
+            language: {
+              decimal: "",
+              emptyTable: "No hay información",
+              info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+              infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+              infoFiltered: "(Filtrado de _MAX_ total entradas)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Mostrar _MENU_ Entradas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "Sin resultados encontrados",
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+          })
+          .buttons()
+          .container()
+          .appendTo("#example1_wrapper .col-md-6:eq(0)");
+      });
+
+      $(function () {
+        $("#example2")
+          .DataTable({
+            language: {
+              decimal: "",
+              emptyTable: "No hay información",
+              info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+              infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+              infoFiltered: "(Filtrado de _MAX_ total entradas)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Mostrar _MENU_ Entradas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "Sin resultados encontrados",
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+          })
+          .buttons()
+          .container()
+          .appendTo("#example1_wrapper .col-md-6:eq(0)");
+      });
+
+      $(function () {
+        $("#example3")
           .DataTable({
             language: {
               decimal: "",
