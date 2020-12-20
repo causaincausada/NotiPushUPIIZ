@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AdminLTE 3 | DataTables</title>
+    <title>NotiPushUPIIZ | Agrupamientos</title>
     <!-- Google Font: Source Sans Pro -->
     <link
       rel="stylesheet"
@@ -88,7 +88,12 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <button type="button" class="btn btn-primary">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#modal-Nuevo_Grupo"
+                    >
                       Nuevo Grupo
                     </button>
                   </div>
@@ -108,120 +113,132 @@
                         <tr>
                           <td>Becas</td>
                           <td>Para becas</td>
-                          <td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
                             <button
                               type="button"
-                              class="btn btn-block btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                            >
-                              Actualizar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-danger"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              Eliminar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-primary"
+                              class="btn btn-outline-primary"
                               data-toggle="modal"
                               data-target="#modal-Asignar"
+                              style="width: 32%"
                             >
-                              Asignar
+                              <i class="nav-icon fas fa-user-friends"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-pencil-alt"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
                         <tr>
                           <td>Credenciales</td>
                           <td>Para nuevo ingreso</td>
-                          <td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
                             <button
                               type="button"
-                              class="btn btn-block btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                            >
-                              Actualizar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-danger"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              Eliminar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-primary"
+                              class="btn btn-outline-primary"
                               data-toggle="modal"
                               data-target="#modal-Asignar"
+                              style="width: 32%"
                             >
-                              Asignar
+                              <i class="nav-icon fas fa-user-friends"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-pencil-alt"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
                         <tr>
                           <td>BEIFI</td>
                           <td>Para becas BEIFI</td>
-                          <td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
                             <button
                               type="button"
-                              class="btn btn-block btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                            >
-                              Actualizar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-danger"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              Eliminar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-primary"
+                              class="btn btn-outline-primary"
                               data-toggle="modal"
                               data-target="#modal-Asignar"
+                              style="width: 32%"
                             >
-                              Asignar
+                              <i class="nav-icon fas fa-user-friends"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-pencil-alt"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
                         <tr>
                           <td>Delfín</td>
                           <td>Grupo Delfín</td>
-                          <td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
                             <button
                               type="button"
-                              class="btn btn-block btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                            >
-                              Actualizar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-danger"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              Eliminar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-block btn-outline-primary"
+                              class="btn btn-outline-primary"
                               data-toggle="modal"
                               data-target="#modal-Asignar"
+                              style="width: 32%"
                             >
-                              Asignar
+                              <i class="nav-icon fas fa-user-friends"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-success"
+                              data-toggle="modal"
+                              data-target="#modal-Actualizar"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-pencil-alt"></i>
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              style="width: 32%"
+                            >
+                              <i class="nav-icon fas fa-trash-alt"></i>
                             </button>
                           </td>
                         </tr>
@@ -253,7 +270,7 @@
     </div>
 
     <div class="modal fade" id="modal-Actualizar">
-      <div class="modal-dialog modal-xl">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Actualizar</h4>
@@ -267,23 +284,37 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>No sé lo que va aquí &hellip;</p>
+            <label>Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite un nombre"
+            />
+            <br />
+            <label>Descripción</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite una descripción"
+            />
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">
-              Close
+              Cerrar
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary">
+              Guardar cambios
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="modal fade" id="modal-Eliminar">
-      <div class="modal-dialog modal-xl">
+    <div class="modal fade" id="modal-Nuevo_Grupo">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Eliminar</h4>
+            <h4 class="modal-title">Nuevo Grupo</h4>
             <button
               type="button"
               class="close"
@@ -294,13 +325,27 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>No sé lo que va aquí&hellip;</p>
+            <label>Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite un nombre"
+            />
+            <br />
+            <label>Descripción</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Digite una descripción"
+            />
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">
-              Close
+              Cerrar
+              <button type="button" class="btn btn-primary">
+                Guardar cambios
+              </button>
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -338,7 +383,7 @@
                       type="button"
                       class="btn btn-block btn-outline-danger"
                     >
-                      Eliminar
+                      <i class="nav-icon fas fa-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
@@ -350,7 +395,7 @@
                       type="button"
                       class="btn btn-block btn-outline-danger"
                     >
-                      Eliminar
+                      <i class="nav-icon fas fa-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
@@ -362,7 +407,7 @@
                       type="button"
                       class="btn btn-block btn-outline-danger"
                     >
-                      Eliminar
+                      <i class="nav-icon fas fa-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
@@ -374,7 +419,7 @@
                       type="button"
                       class="btn btn-block btn-outline-danger"
                     >
-                      Eliminar
+                      <i class="nav-icon fas fa-trash-alt"></i>
                     </button>
                   </td>
                 </tr>
@@ -388,24 +433,26 @@
               </tfoot>
             </table>
 
-            <select class="custom-select rounded-0" style="width: 50%">
-              <option disabled="disabled" selected="selected">
-                Seleccione un grupo
-              </option>
-              <option>Becas</option>
-              <option>Credenciales</option>
-              <option>BEIFI</option>
-              <option>Delfín</option>
-            </select>
-            <button
-              type="button"
-              class="btn btn-success"
-              style="float: right; width: 30%"
-            >
-              Asignar
-            </button>
+            <div style="padding-top: 25px">
+              <select class="custom-select rounded-0" style="width: 50%">
+                <option disabled="disabled" selected="selected">
+                  Seleccione un grupo
+                </option>
+                <option>Becas</option>
+                <option>Credenciales</option>
+                <option>BEIFI</option>
+                <option>Delfín</option>
+              </select>
+              <button
+                type="button"
+                class="btn btn-success"
+                style="float: right; width: 30%"
+              >
+                Asignar
+              </button>
+            </div>
             <br />
-            <div style="padding-top: 25px;">
+            <div style="padding-top: 25px">
               <table id="example3" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -423,7 +470,7 @@
                         type="button"
                         class="btn btn-block btn-outline-danger"
                       >
-                        Eliminar
+                        <i class="nav-icon fas fa-trash-alt"></i>
                       </button>
                     </td>
                   </tr>
@@ -435,7 +482,7 @@
                         type="button"
                         class="btn btn-block btn-outline-danger"
                       >
-                        Eliminar
+                        <i class="nav-icon fas fa-trash-alt"></i>
                       </button>
                     </td>
                   </tr>
