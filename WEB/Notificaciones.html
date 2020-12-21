@@ -1,218 +1,436 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Notificaciones</title>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NotiPushUPIIZ | Notificaciones</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
     <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
-    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
-
-</head>
-
-<body class="hold-transition sidebar-mini">
+    <link
+      rel="stylesheet"
+      href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css"
+    />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+  </head>
+  <body class="hold-transition sidebar-mini">
     <div class="wrapper">
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+        </ul>
+      </nav>
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <div class="sidebar">
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-bell"></i>
-                                <p>Notificaciones</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-layer-group"></i>
-                                <p>Agrupamientos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>Salir</p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <div class="sidebar">
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="../widgets.html" class="nav-link active">
+                  <i class="nav-icon fas fa-bell"></i>
+                  <p>Notificaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../widgets.html" class="nav-link">
+                  <i class="nav-icon fas fa-layer-group"></i>
+                  <p>Agrupamientos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../widgets.html" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>Salir</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="content-wrapper">
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Enviar Notificación</h1>
+              </div>
             </div>
-        </aside>
+          </div>
+        </section>
 
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Notificaciones</h1>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#modal-NuevaNotificacion"
+                    >
+                      Nueva
+                    </button>
+                  </div>
+                  <div class="card-body">
+                    <table
+                      id="example1"
+                      class="table table-bordered table-striped"
+                    >
+                      <thead>
+                        <tr>
+                          <th>Asunto</th>
+                          <th>Grupo</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Becas</td>
+                          <td>Para becas</td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Enviar notificación</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-VerNotificacion"
+                              style="width: 32%"
+                            >
+                              VER
+                            </button>
 
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <button type="button" class="btn btn-block btn-secondary"
-                                                aling="Left">Nueva</button>
-                                        </div>
-                                    </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Credenciales</td>
+                          <td>Para nuevo ingreso</td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
+                          <button
+                          type="button"
+                          class="btn btn-outline-primary"
+                          data-toggle="modal"
+                          data-target="#modal-VerNotificacion"
+                          style="width: 32%"
+                        >
+                          VER
+                        </button>
 
-
-                                </div>
-
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Asunto</th>
-                                            <th>Grupo</th>
-                                            <th style="width: 40px">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Becas</td>
-                                            <td>Todos</td>
-                                            <td><a class="modals" href="#">Ver</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Credenciales</td>
-                                            <td>Todos</td>
-                                            <td><a class="modals" href="#">Ver</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>BEIFI</td>
-                                            <td>Grupo BEIFI</td>
-                                            <td><a class="modals" href="#">Ver</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Delfin</td>
-                                            <td>Grupo Delfin</td>
-                                            <td><a class="modals" href="#">Ver</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer clearfix">
-                                <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-
-
-
-
-                    <!-- Programacion-->
-                    <!-- Programacion-->
-                    <!-- Programacion-->
-                    <!-- Programacion-->
-
-                    <!-- Control Sidebar -->
-                    <aside class="control-sidebar control-sidebar-dark">
-                        <!-- Control sidebar content goes here -->
-                    </aside>
-                    <!-- /.control-sidebar -->
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>BEIFI</td>
+                          <td>Para becas BEIFI</td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
+                          <button
+                          type="button"
+                          class="btn btn-outline-primary"
+                          data-toggle="modal"
+                          data-target="#modal-VerNotificacion"
+                          style="width: 32%"
+                        >
+                          VER
+                        </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Delfín</td>
+                          <td>Grupo Delfín</td>
+                          <td
+                            style="text-align: center; vertical-align: middle"
+                          >
+                          <button
+                          type="button"
+                          class="btn btn-outline-primary"
+                          data-toggle="modal"
+                          data-target="#modal-VerNotificacion"
+                          style="width: 32%"
+                        >
+                          VER
+                        </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>Asunto</th>
+                          <th>Grupo</th>
+                          <th>Acción</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
                 </div>
-                <!-- ./wrapper -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-                <!-- jQuery -->
-                <script src="plugins/jquery/jquery.min.js"></script>
-                <!-- Bootstrap 4 -->
-                <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <!-- DataTables  & Plugins -->
-                <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-                <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-                <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-                <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-                <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-                <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-                <script src="plugins/jszip/jszip.min.js"></script>
-                <script src="plugins/pdfmake/pdfmake.min.js"></script>
-                <script src="plugins/pdfmake/vfs_fonts.js"></script>
-                <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-                <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-                <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-                <!-- AdminLTE App -->
-                <script src="dist/js/adminlte.min.js"></script>
-                <!-- AdminLTE for demo purposes -->
-                <script src="dist/js/demo.js"></script>
-                <!-- Page specific script -->
-                <script>
-                    $(function () {
-                        $("#example1")
-                            .DataTable({
-                                language: {
-                                    decimal: "",
-                                    emptyTable: "No hay información",
-                                    info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                                    infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
-                                    infoFiltered: "(Filtrado de _MAX_ total entradas)",
-                                    infoPostFix: "",
-                                    thousands: ",",
-                                    lengthMenu: "Mostrar _MENU_ Entradas",
-                                    loadingRecords: "Cargando...",
-                                    processing: "Procesando...",
-                                    search: "Buscar:",
-                                    zeroRecords: "Sin resultados encontrados",
-                                    paginate: {
-                                        first: "Primero",
-                                        last: "Ultimo",
-                                        next: "Siguiente",
-                                        previous: "Anterior",
-                                    },
-                                },
-                                responsive: true,
-                                lengthChange: true,
-                                autoWidth: false,
-                            })
-                            .buttons()
-                            .container()
-                            .appendTo("#example1_wrapper .col-md-6:eq(0)");
-                        $("#example2").DataTable({
-                            paging: true,
-                            lengthChange: false,
-                            searching: false,
-                            ordering: true,
-                            info: true,
-                            autoWidth: false,
-                            responsive: true,
-                        });
-                    });
-                </script>
-</body>
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-block"><b>Version</b> 3.1.0-rc</div>
+        <strong
+          >Copyright &copy; 2014-2020
+          <a href="https://adminlte.io">AdminLTE.io</a>.</strong
+        >
+        All rights reserved.
+      </footer>
+    </div>
 
+    <div class="modal fade" id="modal-VerNotificacion">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Notificación</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table>
+                <tr>
+                    <td><b>Asunto: </b></td>
+                    <td>Reunión</td>
+                </tr>
+                <tr>
+                    <td><b>Destinatarios: </b></td>
+                    <td>Academia de Sistemas</td>
+                </tr>
+                <tr>
+                    <td><b>Descripción </b></td>  
+                </tr>
+                <tr>
+                   <td>Se le cita a la reunión el 7 de enero de 2021 a las 10:00 a.m.</td> 
+                </tr>
+                <tr>
+                    <td><b>Fecha (Recibido): </b></td>
+                    <td>20 de Diciembre de 2020</td>
+                </tr>
+                
+            </table>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-NuevaNotificacion">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Nueva Notificación</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Asunto"
+              />
+              <br />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Descripción"
+              />
+              <br />
+              <div class="btn-group">
+                
+                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                  Seleccione un grupo                  
+                </button>
+                <div class="dropdown-menu" role="menu">
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                Cerrar
+                <button type="button" class="btn btn-primary">
+                  Enviar Notificación
+                </button>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+   
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+      $(function () {
+        $("#example1")
+          .DataTable({
+            language: {
+              decimal: "",
+              emptyTable: "No hay información",
+              info: "Mostrando _START_ a _END_ de _TOTAL_ Notificaciones",
+              infoEmpty: "Mostrando 0 to 0 of 0 Notificaciones",
+              infoFiltered: "(Filtrado de _MAX_ total Notificaciones)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Mostrar _MENU_ Notificaciones",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "Sin resultados encontrados",
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+          })
+          .buttons()
+          .container()
+          .appendTo("#example1_wrapper .col-md-6:eq(0)");
+      });
+
+      $(function () {
+        $("#example2")
+          .DataTable({
+            language: {
+              decimal: "",
+              emptyTable: "No hay información",
+              info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+              infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+              infoFiltered: "(Filtrado de _MAX_ total entradas)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Mostrar _MENU_ Entradas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "Sin resultados encontrados",
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+          })
+          .buttons()
+          .container()
+          .appendTo("#example1_wrapper .col-md-6:eq(0)");
+      });
+
+      $(function () {
+        $("#example3")
+          .DataTable({
+            language: {
+              decimal: "",
+              emptyTable: "No hay información",
+              info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+              infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+              infoFiltered: "(Filtrado de _MAX_ total entradas)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Mostrar _MENU_ Entradas",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "Sin resultados encontrados",
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+          })
+          .buttons()
+          .container()
+          .appendTo("#example1_wrapper .col-md-6:eq(0)");
+      });
+    </script>
+  </body>
 </html>
