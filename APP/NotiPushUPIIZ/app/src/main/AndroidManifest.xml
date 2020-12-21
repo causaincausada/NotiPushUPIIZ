@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NotiPushUPIIZ">
+        <activity android:name=".DetallesNotifi"></activity>
         <activity
             android:name=".drawer"
             android:label="@string/title_activity_drawer"
-            android:theme="@style/Theme.NotiPushUPIIZ.NoActionBar"></activity>
+            android:theme="@style/Theme.NotiPushUPIIZ.NoActionBar" />
         <activity android:name=".LoginInicial" />
         <activity android:name=".MainActivity">
             <intent-filter>
