@@ -258,7 +258,7 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Nuevo Notificación</h4>
+              <h4 class="modal-title">Nueva Notificación</h4>
               <button
                 type="button"
                 class="close"
@@ -269,26 +269,33 @@
               </button>
             </div>
             <div class="modal-body">
-              <label>Asunto</label>
               <input
                 type="text"
                 class="form-control"
-                placeholder="Digite el asunto"
+                placeholder="Asunto"
               />
               <br />
-              <label>Grupo</label>
               <input
                 type="text"
                 class="form-control"
-                placeholder="Digite el grupo"
+                placeholder="Descripción"
               />
               <br />
-              <label>Descripción</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Digite una descripción"
-              />
+              <div class="btn-group">
+                
+                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                  Seleccione un grupo                  
+                </button>
+                <div class="dropdown-menu" role="menu">
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Grupo X</a>
+                </div>
+              </div>
+
+
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">
