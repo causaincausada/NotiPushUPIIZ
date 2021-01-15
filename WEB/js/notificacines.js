@@ -115,7 +115,18 @@ document.getElementById("btn-enviar").addEventListener(
     }
 
     if (!error) {
-      //LLamar a la api agregar noti
+      const xml_nueva= new XMLHttpRequest();
+      xml_nueva.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const respuesta = JSON.parse(xml_nueva.responseText);
+          console.log(respuesta);
+          if (respuesta.correcto == "1") {
+            setGrupos(respuesta.grupos);
+          }
+        }
+      };
+      xml_nueva.open("POST", "php/nueva_notificacion.php?titulo=hola&descripcion=holimunto&fecha=17072000&Grupo_idGrupo=1", true);
+      xml_nueva.send();
     }
   },
   false
