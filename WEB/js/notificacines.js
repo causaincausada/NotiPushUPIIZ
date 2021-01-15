@@ -15,6 +15,12 @@ idGrupos.push("1");
 idGrupos.push("2");
 idGrupos.push("3");*/
 
+var dataSet = [
+  [ "Tiger Nixon", "System Architect", "Edinburgh" ],
+  [ "Garrett Winters", "Accountant", "Tokyo" ],
+  [ "Ashton Cox", "Junior Technical Author", "San Francisco"],
+];
+
 const xml = new XMLHttpRequest();
 xml.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
@@ -25,13 +31,31 @@ xml.onreadystatechange = function () {
     }
   }
 };
+
 xml.open("POST", "php/traer_grupos.php", true);
 xml.send();
 
+var dataSet = [
+  [ "Tiger Nixon", "System Architect", "Edinburgh" ],
+  [ "Garrett Winters", "Accountant", "Tokyo" ],
+  [ "Ashton Cox", "Junior Technical Author", "San Francisco"],
+];
 
+const xml33 = new XMLHttpRequest();
+xml33.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    const respuesta = JSON.parse(xml33.responseText);
+    console.log(respuesta);
+    if (respuesta.correcto == "1") {
+      setNoti(respuesta.Notificaciones);
+    }
+  }
+};
+xml33.open("POST", "php/traer_notificaciones.php", true);
+xml33.send();
 
 //Traer estos datos de la api
-var asuntos = [];
+/*var asuntos = [];
 asuntos.push("a");
 asuntos.push("a");
 asuntos.push("a");
@@ -46,38 +70,19 @@ grupo.push("1");
 grupo.push("2");
 grupo.push("3");
 
-setNoti(asuntos, grupo, idNoti);
 
-function setNoti(asuntos, grupo, idNoti) {
-  var tabla = document.getElementById("example1");
-  var tblBody = document.createElement("tbody");
-  for (var i = 0; i < asuntos.length; i++) {
-    var hilera = document.createElement("tr");
 
-    var celda = document.createElement("td");
-    var textoCelda = document.createTextNode(asuntos[i]);
-    celda.appendChild(textoCelda);
-    hilera.appendChild(celda);
+setNoti(asuntos, grupo, idNoti);*/
 
-    var celda = document.createElement("td");
-    var textoCelda = document.createTextNode(grupo[i]);
-    celda.appendChild(textoCelda);
-    hilera.appendChild(celda);
-
-    var parrafo25 = document.createElement("p");
-    parrafo25.innerHTML =
-      "<button type='button' class='btn btn-outline-primary' data-toggle='moda' data-target='#modal-VerNotificacion' style='width: 32%'> VER</button>";
-    parrafo25.className = "text_form";
-
-    var celda = document.createElement("td");
-    celda.style.textAlign = "center";
-    celda.style.verticalAlign = "middle";
-    celda.appendChild(parrafo25);
-    hilera.appendChild(celda);
-
-    tblBody.appendChild(hilera);
+function setNoti(notificaciones) {
+  
+  for (var i = 0; i <notificaciones.length; i++){
+    var b = "<button type='button' class='btn btn-outline-primary' data-toggle='moda' data-target='#modal-VerNotificacion' style='width: 100%;'> VER</button>";
+    var d = [notificaciones[i].titulo, notificaciones[i].idNotificacion , b];
+    dataSet.push(d);
   }
-  tabla.appendChild(tblBody);
+
+  setTablaData();
 }
 
 function setGrupos(grupos) {
@@ -131,3 +136,41 @@ document.getElementById("btn-enviar").addEventListener(
   },
   false
 );
+
+function setTablaData(){
+  $("#example1")
+          .DataTable({
+            data: dataSet,
+      columns: [
+          { title: "Autor" },
+          { title: "Grupo" },
+          { title: "Acción" },
+      ],
+            language: {
+              decimal: "",
+              emptyTable: "No hay información",
+              info: "Mostrando _START_ a _END_ de _TOTAL_ Notificaciones",
+              infoEmpty: "Mostrando 0 to 0 of 0 Notificaciones",
+              infoFiltered: "(Filtrado de _MAX_ total Notificaciones)",
+              infoPostFix: "",
+              thousands: ",",
+              lengthMenu: "Mostrar _MENU_ Notificaciones",
+              loadingRecords: "Cargando...",
+              processing: "Procesando...",
+              search: "Buscar:",
+              zeroRecords: "Sin resultados encontrados",
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+            responsive: true,
+            lengthChange: true,
+            autoWidth: false,
+          })
+          .buttons()
+          .container()
+          .appendTo("#example1_wrapper .col-md-6:eq(0)");
+}
