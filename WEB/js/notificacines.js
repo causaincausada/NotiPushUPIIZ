@@ -16,6 +16,55 @@ idGrupos.push("2");
 idGrupos.push("3");
 setGrupos(nameGrupos, idGrupos);
 
+//Traer estos datos de la api
+var asuntos = [];
+asuntos.push("a");
+asuntos.push("a");
+asuntos.push("a");
+
+var grupo = [];
+grupo.push("x");
+grupo.push("x");
+grupo.push("x");
+
+var idNoti = [];
+grupo.push("1");
+grupo.push("2");
+grupo.push("3");
+
+setNoti(asuntos, grupo, idNoti);
+
+function setNoti(asuntos, grupo, idNoti){
+  var tabla = document.getElementById("example1");
+  var tblBody = document.createElement("tbody");
+  for (var i = 0; i < asuntos.length; i++) {
+    var hilera = document.createElement("tr");
+
+    var celda = document.createElement("td");
+    var textoCelda = document.createTextNode(asuntos[i]);
+    celda.appendChild(textoCelda);
+    hilera.appendChild(celda);
+
+    var celda = document.createElement("td");
+    var textoCelda = document.createTextNode(grupo[i]);
+    celda.appendChild(textoCelda);
+    hilera.appendChild(celda);
+
+    var parrafo25 = document.createElement("p");
+    parrafo25.innerHTML = "<button type='button' class='btn btn-outline-primary' data-toggle='moda' data-target='#modal-VerNotificacion' style='width: 32%'> VER</button>";
+    parrafo25.className = "text_form";
+    
+    var celda = document.createElement("td");
+    celda.style.textAlign = "center";
+    celda.style.verticalAlign = "middle";
+    celda.appendChild(parrafo25);
+    hilera.appendChild(celda);
+
+    tblBody.appendChild(hilera);
+  }
+  tabla.appendChild(tblBody);
+
+}
 
 function setGrupos(nameGrupos, idGrupos) {
   var x = document.getElementById("select-grupo");
