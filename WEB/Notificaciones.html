@@ -93,6 +93,7 @@
                       class="btn btn-primary"
                       data-toggle="modal"
                       data-target="#modal-NuevaNotificacion"
+                      style="float: right"
                     >
                       Nueva
                     </button>
@@ -116,7 +117,6 @@
                           <td
                             style="text-align: center; vertical-align: middle"
                           >
-
                             <button
                               type="button"
                               class="btn btn-outline-primary"
@@ -126,7 +126,6 @@
                             >
                               VER
                             </button>
-
                           </td>
                         </tr>
                         <tr>
@@ -135,16 +134,15 @@
                           <td
                             style="text-align: center; vertical-align: middle"
                           >
-                          <button
-                          type="button"
-                          class="btn btn-outline-primary"
-                          data-toggle="modal"
-                          data-target="#modal-VerNotificacion"
-                          style="width: 32%"
-                        >
-                          VER
-                        </button>
-
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-VerNotificacion"
+                              style="width: 32%"
+                            >
+                              VER
+                            </button>
                           </td>
                         </tr>
                         <tr>
@@ -153,15 +151,15 @@
                           <td
                             style="text-align: center; vertical-align: middle"
                           >
-                          <button
-                          type="button"
-                          class="btn btn-outline-primary"
-                          data-toggle="modal"
-                          data-target="#modal-VerNotificacion"
-                          style="width: 32%"
-                        >
-                          VER
-                        </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-VerNotificacion"
+                              style="width: 32%"
+                            >
+                              VER
+                            </button>
                           </td>
                         </tr>
                         <tr>
@@ -170,15 +168,15 @@
                           <td
                             style="text-align: center; vertical-align: middle"
                           >
-                          <button
-                          type="button"
-                          class="btn btn-outline-primary"
-                          data-toggle="modal"
-                          data-target="#modal-VerNotificacion"
-                          style="width: 32%"
-                        >
-                          VER
-                        </button>
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-toggle="modal"
+                              data-target="#modal-VerNotificacion"
+                              style="width: 32%"
+                            >
+                              VER
+                            </button>
                           </td>
                         </tr>
                       </tbody>
@@ -224,29 +222,38 @@
           </div>
           <div class="modal-body">
             <table>
-                <tr>
-                    <td><b>Asunto: </b></td>
-                    <td>Reunión</td>
-                </tr>
-                <tr>
-                    <td><b>Destinatarios: </b></td>
-                    <td>Academia de Sistemas</td>
-                </tr>
-                <tr>
-                    <td><b>Descripción </b></td>  
-                </tr>
-                <tr>
-                   <td>Se le cita a la reunión el 7 de enero de 2021 a las 10:00 a.m.</td> 
-                </tr>
-                <tr>
-                    <td><b>Fecha (Recibido): </b></td>
-                    <td>20 de Diciembre de 2020</td>
-                </tr>
-                
+              <tr>
+                <td><b>Asunto: </b></td>
+                <td>Reunión</td>
+              </tr>
+              <tr>
+                <td><b>Destinatarios: </b></td>
+                <td>Academia de Sistemas</td>
+              </tr>
+              <tr>
+                <td><b>Descripción </b></td>
+              </tr>
+              <tr>
+                <td>
+                  Se le cita a la reunión el 7 de enero de 2021 a las 10:00 a.m.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Fecha (Recibido): </b></td>
+                <td>20 de Diciembre de 2020</td>
+              </tr>
             </table>
           </div>
-          <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
+          <div
+            class="modal-footer justify-content-between"
+            style="display: block"
+          >
+            <button
+              type="button"
+              class="btn btn-default"
+              data-dismiss="modal"
+              style="float: right"
+            >
               Cerrar
             </button>
           </div>
@@ -255,64 +262,53 @@
     </div>
 
     <div class="modal fade" id="modal-NuevaNotificacion">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Nueva Notificación</h4>
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Nueva Notificación</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" placeholder="Asunto" />
+            <br />
+            <input type="text" class="form-control" placeholder="Descripción" />
+            <br />
+            <div class="btn-group">
               <button
                 type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
+                class="btn btn-default dropdown-toggle dropdown-icon"
+                data-toggle="dropdown"
               >
-                <span aria-hidden="true">&times;</span>
+                Seleccione un grupo
               </button>
-            </div>
-            <div class="modal-body">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Asunto"
-              />
-              <br />
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Descripción"
-              />
-              <br />
-              <div class="btn-group">
-                
-                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                  Seleccione un grupo                  
-                </button>
-                <div class="dropdown-menu" role="menu">
-                  <a class="dropdown-item" href="#">Grupo X</a>
-                  <a class="dropdown-item" href="#">Grupo X</a>
-                  <a class="dropdown-item" href="#">Grupo X</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Grupo X</a>
-                </div>
+              <div class="dropdown-menu" role="menu">
+                <a class="dropdown-item" href="#">Grupo X</a>
+                <a class="dropdown-item" href="#">Grupo X</a>
+                <a class="dropdown-item" href="#">Grupo X</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Grupo X</a>
               </div>
-
-
             </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">
-                Cerrar
-                <button type="button" class="btn btn-primary">
-                  Enviar Notificación
-                </button>
+          </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Cerrar
+              <button type="button" class="btn btn-primary">
+                Enviar Notificación
               </button>
-            </div>
+            </button>
           </div>
         </div>
       </div>
+    </div>
 
-
-
-
-   
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
