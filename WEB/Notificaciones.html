@@ -95,6 +95,7 @@
                       data-toggle="modal"
                       data-target="#modal-NuevaNotificacion"
                       style="float: right"
+                      id="btn-nueva"
                     >
                       Nueva
                     </button>
@@ -277,31 +278,20 @@
             </button>
           </div>
           <div class="modal-body">
-            <input type="text" class="form-control" placeholder="Asunto" />
+            <input type="text" class="form-control" placeholder="Asunto" id="asunto" />
             <br />
-            <input type="text" class="form-control" placeholder="Descripción" />
+            <input type="text" class="form-control" placeholder="Descripción" id="descripcion" />
             <br />
-            <div class="btn-group">
-              <button
-                type="button"
-                class="btn btn-default dropdown-toggle dropdown-icon"
-                data-toggle="dropdown"
-              >
+            <select class="custom-select rounded-0" style="width: 50%" id="select-grupo">
+              <option value="-1" disabled="disabled" selected="selected">
                 Seleccione un grupo
-              </button>
-              <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="#">Grupo X</a>
-                <a class="dropdown-item" href="#">Grupo X</a>
-                <a class="dropdown-item" href="#">Grupo X</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Grupo X</a>
-              </div>
-            </div>
+              </option>
+            </select>
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Cerrar
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary" id="btn-enviar">
                 Enviar Notificación
               </button>
             </button>
