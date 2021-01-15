@@ -1,5 +1,5 @@
 //Traer estos datos de la api
-var nameGrupos = [];
+/*var nameGrupos = [];
 nameGrupos.push("Hola");
 nameGrupos.push("Hola2");
 nameGrupos.push("Hola3");
@@ -13,8 +13,22 @@ idGrupos.push("2");
 idGrupos.push("3");
 idGrupos.push("1");
 idGrupos.push("2");
-idGrupos.push("3");
-setGrupos(nameGrupos, idGrupos);
+idGrupos.push("3");*/
+
+const xml = new XMLHttpRequest();
+xml.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    const respuesta = JSON.parse(xml.responseText);
+    console.log(respuesta);
+    if (respuesta.correcto == "1") {
+      setGrupos(respuesta.grupos);
+    }
+  }
+};
+xml.open("POST", "php/traer_grupos.php", true);
+xml.send();
+
+
 
 //Traer estos datos de la api
 var asuntos = [];
@@ -34,7 +48,7 @@ grupo.push("3");
 
 setNoti(asuntos, grupo, idNoti);
 
-function setNoti(asuntos, grupo, idNoti){
+function setNoti(asuntos, grupo, idNoti) {
   var tabla = document.getElementById("example1");
   var tblBody = document.createElement("tbody");
   for (var i = 0; i < asuntos.length; i++) {
@@ -51,9 +65,10 @@ function setNoti(asuntos, grupo, idNoti){
     hilera.appendChild(celda);
 
     var parrafo25 = document.createElement("p");
-    parrafo25.innerHTML = "<button type='button' class='btn btn-outline-primary' data-toggle='moda' data-target='#modal-VerNotificacion' style='width: 32%'> VER</button>";
+    parrafo25.innerHTML =
+      "<button type='button' class='btn btn-outline-primary' data-toggle='moda' data-target='#modal-VerNotificacion' style='width: 32%'> VER</button>";
     parrafo25.className = "text_form";
-    
+
     var celda = document.createElement("td");
     celda.style.textAlign = "center";
     celda.style.verticalAlign = "middle";
@@ -63,16 +78,15 @@ function setNoti(asuntos, grupo, idNoti){
     tblBody.appendChild(hilera);
   }
   tabla.appendChild(tblBody);
-
 }
 
-function setGrupos(nameGrupos, idGrupos) {
+function setGrupos(grupos) {
   var x = document.getElementById("select-grupo");
 
-  for (var i = 0; i < nameGrupos.length; i++) {
+  for (var i = 0; i < grupos.length; i++) {
     var option = document.createElement("option");
-    option.text = nameGrupos[i];
-    option.value = idGrupos[i];
+    option.text = grupos[i].nombre;
+    option.value = grupos[i].idGrupo;
     x.add(option);
   }
 }
@@ -85,22 +99,22 @@ document.getElementById("btn-enviar").addEventListener(
     var descripcion = document.getElementById("descripcion").value;
     var error = false;
 
-    if(asunto == ""){
+    if (asunto == "") {
       alert("Campo asunto está vacío");
       error = true;
     }
 
-    if(descripcion == ""){
+    if (descripcion == "") {
       alert("Campo descripción está vacío");
       error = true;
     }
 
-    if(grupo == "-1"){
+    if (grupo == "-1") {
       alert("Debe seleccionar un grupo");
       error = true;
     }
 
-    if(!error){
+    if (!error) {
       //LLamar a la api agregar noti
     }
   },
