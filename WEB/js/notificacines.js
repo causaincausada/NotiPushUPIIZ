@@ -127,6 +127,7 @@ document.getElementById("btn-enviar").addEventListener(
           console.log(respuesta);
           if (respuesta.correcto == "1") {
             setGrupos(respuesta.grupos);
+            alert("Lista nueva notificacion");
           }
         }
       };
