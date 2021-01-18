@@ -82,55 +82,34 @@
     {
         $respuesta = array();
         $respuesta['correcto']= false;
-        if (!isset($_GET['ID'])) {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "Falta ID";
+        if (!isset($_GET['idGrupo'])) {
             echo json_encode($respuesta);
             die;
         }
 
-        $ID = $_GET['ID'];
-
-        if ($ID == "") {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "El parámetro ID esta vacío";
-            echo json_encode($respuesta);
-            die;
-        }
+        $idGrupo = $_GET['idGrupo'];
 
         $d = file_get_contents("php://input");
         $datos = json_decode($d);
 
         if (empty($d)) {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "Faltan datos";
             echo json_encode($respuesta);
             die;
         }
 
-        if (!isset($datos->Nombre) || !isset($datos->Usuario) || !isset($datos->Contrasena)) {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "Faltan parámetros";
+        if (!isset($datos->nombre) || !isset($datos->descripcion)) {
             echo json_encode($respuesta);
             die;
         }
 
-        $Nombre = $datos->Nombre;
-        $Usuario = $datos->Usuario;
-        $Contrasena = $datos->Contrasena;
-
-        if ($Nombre == "" || $Usuario == "" || $Contrasena == "") {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "Algún parámetro esta vacío";
-            echo json_encode($respuesta);
-            die;
-        }
+        $nombre = $datos->nombre;
+        $descripcion= $datos->descripcion;
 
         $link=connect();
-        $consulta="UPDATE `empleados` SET `Nombre` = '". $Nombre ."', `Usuario` = '". $Usuario ."', `Contrasena` = '". $Contrasena ."' WHERE `empleados`.`ID` = " . $ID;
+        $consulta="UPDATE `grupo` SET `nombre` = '".$nombre."', `descripcion` = '".$descripcion."' WHERE `grupo`.`idGrupo` = " . $idGrupo;
         mysqli_query($link, $consulta) or error_Consulta();
         mysqli_close($link);
-        $respuesta['error'] = false;
+        $respuesta['correcto']= true;
         echo json_encode($respuesta);
     }
 
@@ -140,37 +119,26 @@
         $respuesta = array();
         $respuesta['correcto']= false;
 
-        if (!isset($_GET['ID'])) {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "Falta ID";
+        if (!isset($_GET['idGrupo'])) {
             echo json_encode($respuesta);
             die;
         }
 
-        $ID = $_GET['ID'];
-
-        if ($ID == "") {
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "Algún parámetro esta vacío";
-            echo json_encode($respuesta);
-            die;
-        }
+        $idGrupo = $_GET['idGrupo'];
 
         $link=connect();
-        $consulta= "DELETE FROM `empleados` WHERE `empleados`.`ID` =" . $ID;
+        $consulta= "DELETE FROM `grupo` WHERE `grupo`.`idGrupo` = " . $idGrupo;
         mysqli_query($link, $consulta) or error_Consulta();
         
         if (mysqli_affected_rows($link) < 1) {
             mysqli_close($link);
-            $respuesta['error'] = true;
-            $respuesta['error_Mensaje'] = "No se eliminó o el usuario no existe en la base de datos";
             echo json_encode($respuesta);
             die;
         }
         
         mysqli_close($link);
 
-        $respuesta['error'] = false;
+        $respuesta['correcto']= true;
         echo json_encode($respuesta);
         die;
     }
