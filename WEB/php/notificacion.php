@@ -1,6 +1,4 @@
 <?php
-    $respuesta = array();
-    $respuesta['correcto']='0';
     include('conexion.php');
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
@@ -12,6 +10,7 @@
             break;
 
         default:
+            echo json_encode($respuesta);
             die;
             break;
     }
@@ -19,6 +18,8 @@
     ///GET
     function get_Notificacion()
     {
+        $respuesta = array();
+        $respuesta['correcto'] = false;
         if (isset($_GET['idNotificacion'])) {
             $idNotificacion = $_GET['idNotificacion'];
             $link=connect();
@@ -58,13 +59,14 @@
     ///POST
     function alta_Notificacion()
     {
+        $respuesta = array();
+        $respuesta['correcto'] = false;
         $link=connect();
-        $respuesta['correcto']='0';
-
+    
         $d = file_get_contents("php://input");
         $datos = json_decode($d);
 
-        if (empty($d)) {;
+        if (empty($d)) {
             echo json_encode($respuesta);
             die;
         }
@@ -81,15 +83,14 @@
 
         $sentencia="INSERT INTO `notificacion` (`idNotificacion`, `titulo`, `descripcion`, `fecha`, `Grupo_idGrupo`) VALUES (NULL, '".$titulo."', '".$descripcion."', '".$fecha."', '".$Grupo_idGrupo."')";
         $BD= mysqli_query($link, $sentencia) or error_Consulta();
-        $respuesta['correcto']='1';
-        
+        $respuesta['correcto']= true;
         echo json_encode($respuesta);
     }
 
     function error_Consulta()
     {
         $respuesta = array();
-        $respuesta['correcto']='0';
+        $respuesta['correcto'] = false;
         echo json_encode($respuesta);
         die;
     }
