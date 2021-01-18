@@ -77,7 +77,7 @@ setNoti(asuntos, grupo, idNoti);*/
 function setNoti(notificaciones) {
   
   for (var i = 0; i <notificaciones.length; i++){
-    var b = "<button type='button' class='btn btn-outline-primary' data-toggle='moda' data-target='#modal-VerNotificacion' style='width: 100%;'> VER</button>";
+    var b = "<button type='button' class='btn btn-outline-primary' data-toggle='modal' data-target='#modal-VerNotificacion' style='width: 100%;'> VER</button>";
     var d = [notificaciones[i].titulo, notificaciones[i].idNotificacion , b];
     dataSet.push(d);
   }
