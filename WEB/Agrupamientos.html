@@ -190,11 +190,11 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>¿Está seguro de que desea eliminar el grupo?</p>
+            <p id="label_eliminar">¿Está seguro de que desea eliminar el grupo?</p>
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-outline-light">Eliminar</button>
+            <button type="button" class="btn btn-outline-light" id="btn_eliminar">Eliminar</button>
           </div>
         </div>
       </div>
@@ -273,7 +273,15 @@
                   <td>
                     <button
                       type="button"
-                      class="btn btn-block btn-outline-danger"
+                      style='width: 49%'
+                      class="btn btn-outline-primary"
+                    >
+                      <i class="nav-icon fas fa-tasks"></i>
+                    </button>
+                    <button
+                      type="button"
+                      style='width: 49%'
+                      class="btn btn-outline-danger"
                     >
                       <i class="nav-icon fas fa-trash-alt"></i>
                     </button>
@@ -326,22 +334,6 @@
             </table>
 
             <div style="padding-top: 25px">
-              <select class="custom-select rounded-0" style="width: 50%">
-                <option disabled="disabled" selected="selected">
-                  Seleccione un grupo
-                </option>
-                <option>Becas</option>
-                <option>Credenciales</option>
-                <option>BEIFI</option>
-                <option>Delfín</option>
-              </select>
-              <button
-                type="button"
-                class="btn btn-success"
-                style="float: right; width: 30%"
-              >
-                Asignar
-              </button>
             </div>
             <br />
             <div style="padding-top: 25px">

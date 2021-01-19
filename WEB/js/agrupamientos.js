@@ -3,17 +3,38 @@ var idGrupoSelect;
 
 actualizar_Grupo();
 
-function borrar_Grupo(id) {}
+function borrar_Grupo(id) {
+  idGrupoSelect = id;
+  const xml1 = new XMLHttpRequest();
+  xml1.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml1.responseText);
+      if (respuesta.correcto) {
+        if (respuesta.grupos.length > 0) {
+          document.getElementById("btn_eliminar").style.visibility = "hidden";
+          document.getElementById("label_eliminar").innerText =
+            "No puede eliminar este grupo, primero debe eliminar a sus miembros.";
+        } else {
+          document.getElementById("btn_eliminar").style.visibility = "visible";
+          document.getElementById("label_eliminar").innerText =
+            "¿Está seguro de que desea eliminar el grupo?";
+        }
+      }
+    }
+  };
+  xml1.open("GET", "php/agrupamientos.php?Grupo_idGrupo=" + id, true);
+  xml1.send();
+}
 
 function editar_Grupo(id) {
-    idGrupoSelect = id;
-    for (var i = 0; i <grupos.length; i++) {
-        if (grupos[i].idGrupo == id) {
-            document.getElementById("a_nombre").value = grupos[i].nombre;
-            document.getElementById("a_descripcion").value = grupos[i].descripcion;
-            break;
-        }
+  idGrupoSelect = id;
+  for (var i = 0; i < grupos.length; i++) {
+    if (grupos[i].idGrupo == id) {
+      document.getElementById("a_nombre").value = grupos[i].nombre;
+      document.getElementById("a_descripcion").value = grupos[i].descripcion;
+      break;
     }
+  }
 }
 
 function agrupar_Grupo(id) {}
@@ -109,47 +130,77 @@ document.getElementById("btn-enviar").addEventListener(
 );
 
 document.getElementById("a_btn-enviar").addEventListener(
-    "click",
-    function () {
-      var nombre = document.getElementById("a_nombre").value;
-      var descripcion = document.getElementById("a_descripcion").value;
-      var error = false;
-  
-      if (nombre == "") {
-        alert("Campo nombre está vacío");
-        error = true;
-      }
-  
-      if (descripcion == "") {
-        alert("Campo descripción está vacío");
-        error = true;
-      }
-  
-      if (!error) {
-        const xml_nueva_noti = new XMLHttpRequest();
-        xml_nueva_noti.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            const respuesta = JSON.parse(xml_nueva_noti.responseText);
-            if (respuesta.correcto) {
-              document.getElementById("a_nombre").value = "";
-              document.getElementById("a_descripcion").value = "";
-  
-              $(function () {
-                $("#modal-Actualizar").modal("toggle");
-              });
-  
-              actualizar_Grupo();
-            }
+  "click",
+  function () {
+    var nombre = document.getElementById("a_nombre").value;
+    var descripcion = document.getElementById("a_descripcion").value;
+    var error = false;
+
+    if (nombre == "") {
+      alert("Campo nombre está vacío");
+      error = true;
+    }
+
+    if (descripcion == "") {
+      alert("Campo descripción está vacío");
+      error = true;
+    }
+
+    if (!error) {
+      const xml_nueva_noti = new XMLHttpRequest();
+      xml_nueva_noti.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const respuesta = JSON.parse(xml_nueva_noti.responseText);
+          if (respuesta.correcto) {
+            document.getElementById("a_nombre").value = "";
+            document.getElementById("a_descripcion").value = "";
+
+            $(function () {
+              $("#modal-Actualizar").modal("toggle");
+            });
+
+            actualizar_Grupo();
           }
-        };
-        xml_nueva_noti.open("PUT", "php/grupo.php?idGrupo="+idGrupoSelect, true);
-  
-        var data = {};
-        data["nombre"] = nombre;
-        data["descripcion"] = descripcion;
-        var data_json = JSON.stringify(data);
-        xml_nueva_noti.send(data_json);
+        }
+      };
+      xml_nueva_noti.open(
+        "PUT",
+        "php/grupo.php?idGrupo=" + idGrupoSelect,
+        true
+      );
+
+      var data = {};
+      data["nombre"] = nombre;
+      data["descripcion"] = descripcion;
+      var data_json = JSON.stringify(data);
+      xml_nueva_noti.send(data_json);
+    }
+  },
+  false
+);
+
+document.getElementById("btn_eliminar").addEventListener(
+  "click",
+  function () {
+    const xml1 = new XMLHttpRequest();
+    xml1.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const respuesta = JSON.parse(xml1.responseText);
+        if (respuesta.correcto) {
+          $(function () {
+            $("#modal-Eliminar").modal("toggle");
+          });
+
+          actualizar_Grupo();
+        } else {
+          document.getElementById("btn_eliminar").style.visibility = "hidden";
+          document.getElementById("label_eliminar").innerText =
+            "No puede eliminar este grupo, hay notificaciones de este grupo.";
+        }
       }
-    },
-    false
-  );
+    };
+    xml1.open("DELETE", "php/grupo.php?idGrupo=" + idGrupoSelect, true);
+    xml1.send();
+  },
+  false
+);
