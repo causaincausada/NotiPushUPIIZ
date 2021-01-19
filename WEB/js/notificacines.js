@@ -1,33 +1,6 @@
-var dataSet = [
-  ["Tiger Nixon", "System Architect", "Edinburgh"],
-  ["Garrett Winters", "Accountant", "Tokyo"],
-  ["Ashton Cox", "Junior Technical Author", "San Francisco"],
-];
+var dataSet = [];
 
-const xml = new XMLHttpRequest();
-xml.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    const respuesta = JSON.parse(xml.responseText);
-    if (respuesta.correcto) {
-      setGrupos(respuesta.grupos);
-    }
-  }
-};
-
-xml.open("GET", "php/grupo.php", true);
-xml.send();
-
-const xml33 = new XMLHttpRequest();
-xml33.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    const respuesta = JSON.parse(xml33.responseText);
-    if (respuesta.correcto == "1") {
-      setNoti(respuesta.notificaciones);
-    }
-  }
-};
-xml33.open("GET", "php/notificacion.php", true);
-xml33.send();
+init();
 
 function setNoti(notificaciones) {
   for (var i = 0; i < notificaciones.length; i++) {
@@ -75,27 +48,92 @@ document.getElementById("btn-enviar").addEventListener(
     }
 
     if (!error) {
-      const xml_nueva = new XMLHttpRequest();
-      xml_nueva.onreadystatechange = function () {
+      const xml_nueva_noti = new XMLHttpRequest();
+      xml_nueva_noti.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          const respuesta = JSON.parse(xml_nueva.responseText);
-          console.log(respuesta);
-          if (respuesta.correcto == "1") {
-            setGrupos(respuesta.grupos);
-            alert("Lista nueva notificacion");
+          const respuesta = JSON.parse(xml_nueva_noti.responseText);
+          if (respuesta.correcto) {
+            document.getElementById("select-grupo").value = -1;
+            document.getElementById("asunto").value = "";
+            document.getElementById("descripcion").value = "";
+
+            $(function () {
+              $("#modal-NuevaNotificacion").modal("toggle");
+            });
+
+            resetNotificaciones();
           }
         }
       };
-      xml_nueva.open(
-        "POST",
-        "php/nueva_notificacion.php?titulo=hola&descripcion=holimunto&fecha=17072000&Grupo_idGrupo=1",
-        true
-      );
-      xml_nueva.send();
+      xml_nueva_noti.open("POST", "php/notificacion.php", true);
+
+      var data = {};
+      data["titulo"] = asunto;
+      data["descripcion"] = descripcion;
+      data["fecha"] = timestamp();
+      data["Grupo_idGrupo"] = grupo;
+      var data_json = JSON.stringify(data);
+      xml_nueva_noti.send(data_json);
     }
   },
   false
 );
+
+function init() {
+  const xml = new XMLHttpRequest();
+  xml.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml.responseText);
+      if (respuesta.correcto) {
+        setGrupos(respuesta.grupos);
+      }
+    }
+  };
+
+  xml.open("GET", "php/grupo.php", true);
+  xml.send();
+
+  const xml2 = new XMLHttpRequest();
+  xml2.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml2.responseText);
+      if (respuesta.correcto) {
+        setNoti(respuesta.notificaciones);
+      }
+    }
+  };
+  xml2.open("GET", "php/notificacion.php", true);
+  xml2.send();
+}
+
+function resetNotificaciones() {
+  const xml3 = new XMLHttpRequest();
+  xml3.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml3.responseText);
+      if (respuesta.correcto) {
+        notificaciones = respuesta.notificaciones;
+        dataSet = [];
+        for (var i = 0; i < notificaciones.length; i++) {
+          var b =
+            "<button type='button' class='btn btn-outline-primary' data-toggle='modal' data-target='#modal-VerNotificacion' style='width: 100%;'> VER</button>";
+          var d = [
+            notificaciones[i].titulo,
+            notificaciones[i].idNotificacion,
+            b,
+          ];
+          dataSet.push(d);
+        }
+
+        $("#example1").DataTable().clear().draw();
+        $("#example1").DataTable().rows.add(dataSet);
+        $("#example1").DataTable().columns.adjust().draw();
+      }
+    }
+  };
+  xml3.open("GET", "php/notificacion.php", true);
+  xml3.send();
+}
 
 function setTablaData() {
   $("#example1")
@@ -129,4 +167,26 @@ function setTablaData() {
     .buttons()
     .container()
     .appendTo("#example1_wrapper .col-md-6:eq(0)");
+}
+
+function timestamp() {
+  function pad(n) {
+    return n < 10 ? "0" + n : n;
+  }
+  d = new Date();
+  dash = "-";
+  colon = ":";
+  return (
+    d.getFullYear() +
+    dash +
+    pad(d.getMonth() + 1) +
+    dash +
+    pad(d.getDate()) +
+    " " +
+    pad(d.getHours()) +
+    colon +
+    pad(d.getMinutes()) +
+    colon +
+    pad(d.getSeconds())
+  );
 }
