@@ -37,7 +37,138 @@ function editar_Grupo(id) {
   }
 }
 
-function agrupar_Grupo(id) {}
+function agrupar_Grupo(id) {
+  idGrupoSelect = id;
+  actualizar_alumnos();
+  actualizar_agrupamiento();
+}
+
+function addAgrupamiento(id) {
+  const xml1 = new XMLHttpRequest();
+  xml1.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml1.responseText);
+      if (respuesta.correcto) {
+        actualizar_alumnos();
+        actualizar_agrupamiento();
+      }
+    }
+  };
+  xml1.open("POST", "php/agrupamientos.php", true);
+  var data = {};
+  data["Usuario_idUsuario"] = id;
+  data["Grupo_idGrupo"] = idGrupoSelect;
+  var data_json = JSON.stringify(data);
+  xml1.send(data_json);
+}
+
+function borrarUsuAgrupamiento(id) {
+  const xml1 = new XMLHttpRequest();
+  xml1.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml1.responseText);
+      if (respuesta.correcto) {
+        actualizar_alumnos();
+        actualizar_agrupamiento();
+      }
+    }
+  };
+  xml1.open(
+    "DELETE",
+    "php/agrupamientos.php?Usuario_idUsuario=" +
+      id +
+      "&Grupo_idGrupo=" +
+      idGrupoSelect,
+    true
+  );
+  xml1.send();
+}
+
+function borrarUsuario(id) {
+  const xml1 = new XMLHttpRequest();
+  xml1.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml1.responseText);
+      if (respuesta.correcto) {
+        actualizar_alumnos();
+      } else {
+        alert(
+          "No puede eliminar este usuario, primero debe ser eliminado de todos los grupos."
+        );
+      }
+    }
+  };
+  xml1.open("DELETE", "php/usuario.php?idUsuario=" + id, true);
+  xml1.send();
+}
+
+function actualizar_alumnos() {
+  const xml1 = new XMLHttpRequest();
+  xml1.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml1.responseText);
+      if (respuesta.correcto) {
+        var dataSet = [];
+        var usuarios = respuesta.usuarios;
+        for (var i = 0; i < usuarios.length; i++) {
+          var a =
+            "<button type='button' style='width: 49%' class='btn btn-outline-primary' onclick='addAgrupamiento(" +
+            +usuarios[i].idUsuario +
+            ")'>" +
+            "<i class='nav-icon fas fa-tasks'></i></button>";
+
+          a +=
+            "<button type='button' style='width: 49%' class='btn btn-outline-danger' onclick='borrarUsuario(" +
+            +usuarios[i].idUsuario +
+            ")'>" +
+            "<i class='nav-icon fas fa-trash-alt'></i></button>";
+
+          var d = [usuarios[i].nombrecompleto, usuarios[i].tipo, a];
+          dataSet.push(d);
+        }
+
+        $("#example2").DataTable().clear().draw();
+        $("#example2").DataTable().rows.add(dataSet);
+        $("#example2").DataTable().columns.adjust().draw();
+      }
+    }
+  };
+  xml1.open("GET", "php/usuario.php?Grupo_idGrupo=" + idGrupoSelect, true);
+  xml1.send();
+}
+
+function actualizar_agrupamiento() {
+  const xml1 = new XMLHttpRequest();
+  xml1.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const respuesta = JSON.parse(xml1.responseText);
+      if (respuesta.correcto) {
+        var dataSet = [];
+        var g = respuesta.grupos;
+        for (var i = 0; i < g.length; i++) {
+          var a =
+            "<button type='button'class='btn btn-block btn-outline-danger' onclick='borrarUsuAgrupamiento(" +
+            +g[i].idUsuario +
+            ")'>" +
+            "<i class='nav-icon fas fa-trash-alt'></i></button>";
+
+          var d = [g[i].nombrecompleto, g[i].tipo, a];
+          dataSet.push(d);
+        }
+
+        $("#example3").DataTable().clear().draw();
+        $("#example3").DataTable().rows.add(dataSet);
+        $("#example3").DataTable().columns.adjust().draw();
+      }
+    }
+  };
+  xml1.open(
+    "GET",
+    "php/agrupamientos.php?Grupo_idGrupo=" + idGrupoSelect,
+    true
+  );
+  xml1.send();
+}
 
 function actualizar_Grupo() {
   const xml1 = new XMLHttpRequest();
@@ -201,6 +332,16 @@ document.getElementById("btn_eliminar").addEventListener(
     };
     xml1.open("DELETE", "php/grupo.php?idGrupo=" + idGrupoSelect, true);
     xml1.send();
+  },
+  false
+);
+
+document.getElementById("btn_agrup").addEventListener(
+  "click",
+  function () {
+    $(function () {
+      $("#modal-Asignar").modal("toggle");
+    });
   },
   false
 );

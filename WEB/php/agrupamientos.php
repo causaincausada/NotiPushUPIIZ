@@ -11,6 +11,8 @@
             eliminar_agrupamiento();
             break;
         default:
+            $respuesta = array();
+            $respuesta['correcto']= false;
             echo json_encode($respuesta);
             die;
             break;

@@ -187,6 +187,7 @@ function setTablaData() {
           previous: "Anterior",
         },
       },
+      retrieve: true,
       responsive: true,
       lengthChange: true,
       autoWidth: false,

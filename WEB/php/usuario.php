@@ -19,6 +19,8 @@
             break;
 
         default:
+            $respuesta = array();
+            $respuesta['correcto']= false;
             echo json_encode($respuesta);
             die;
             break;
@@ -30,8 +32,13 @@
         $respuesta = array();
         $respuesta['correcto']= false;
 
+        if (!isset($_GET['Grupo_idGrupo'])) {
+            echo json_encode($respuesta);
+            die;
+        }
+
         $link=connect();
-        $consulta="SELECT * FROM `usuario`";
+        $consulta="select * from usuario where usuario.idUsuario not in ( SELECT usuario.idUsuario FROM `agrupamiento` INNER JOIN `usuario` ON `Grupo_idGrupo`=". $_GET['Grupo_idGrupo'] ." AND `idUsuario` = `Usuario_idUsuario` )";
         $resultado = mysqli_query($link, $consulta) or error_Consulta();
         mysqli_close($link);
     
@@ -50,13 +57,11 @@
     ///POST
     function alta_Usuario()
     {
-
     }
 
     ///PUT
     function actualizar_Usuario()
     {
-
     }
 
     ///DELETE

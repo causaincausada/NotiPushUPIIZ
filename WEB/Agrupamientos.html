@@ -266,64 +266,6 @@
                   <th>Acción</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Ada Lovelace</td>
-                  <td>Alumno</td>
-                  <td>
-                    <button
-                      type="button"
-                      style='width: 49%'
-                      class="btn btn-outline-primary"
-                    >
-                      <i class="nav-icon fas fa-tasks"></i>
-                    </button>
-                    <button
-                      type="button"
-                      style='width: 49%'
-                      class="btn btn-outline-danger"
-                    >
-                      <i class="nav-icon fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Grace Hopper</td>
-                  <td>PAAE</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-block btn-outline-danger"
-                    >
-                      <i class="nav-icon fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Margaret Hamilton</td>
-                  <td>Alumno</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-block btn-outline-danger"
-                    >
-                      <i class="nav-icon fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Joan Clark</td>
-                  <td>Docente</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-block btn-outline-danger"
-                    >
-                      <i class="nav-icon fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
               <tfoot>
                 <tr>
                   <th>Nombre</th>
@@ -345,32 +287,6 @@
                     <th>Acción</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Ada Lovelace</td>
-                    <td>Alumno</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-block btn-outline-danger"
-                      >
-                        <i class="nav-icon fas fa-trash-alt"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Grace Hopper</td>
-                    <td>PAAE</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="btn btn-block btn-outline-danger"
-                      >
-                        <i class="nav-icon fas fa-trash-alt"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
                 <tfoot>
                   <tr>
                     <th>Nombre</th>
@@ -385,7 +301,7 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" id="btn_agrup">
               Guardar cambios
             </button>
           </div>
@@ -439,6 +355,7 @@
                 previous: "Anterior",
               },
             },
+            retrieve: true,
             responsive: true,
             lengthChange: true,
             autoWidth: false,
@@ -471,6 +388,7 @@
                 previous: "Anterior",
               },
             },
+            retrieve: true,
             responsive: true,
             lengthChange: true,
             autoWidth: false,
@@ -503,6 +421,7 @@
                 previous: "Anterior",
               },
             },
+            retrieve: true,
             responsive: true,
             lengthChange: true,
             autoWidth: false,
