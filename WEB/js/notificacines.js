@@ -1,12 +1,34 @@
 var dataSet = [];
+var noti;
+var grups;
 
 init();
+
+function btn_ver(id) {
+  for (var i = 0; i < noti.length; i++) {
+    if (noti[i].idNotificacion == id) {
+      document.getElementById("label_asunto").innerText = noti[i].titulo;
+      document.getElementById("label_desti").innerText = noti[i].descripcion;
+      document.getElementById("label_des").innerText = getNameGrupo(
+        noti[i].Grupo_idGrupo
+      );
+      document.getElementById("label_date").innerText = noti[i].fecha;
+      break;
+    }
+  }
+}
 
 function setNoti(notificaciones) {
   for (var i = 0; i < notificaciones.length; i++) {
     var b =
-      "<button type='button' class='btn btn-outline-primary' data-toggle='modal' data-target='#modal-VerNotificacion' style='width: 100%;'> VER</button>";
-    var d = [notificaciones[i].titulo, notificaciones[i].idNotificacion, b];
+      "<button type='button' class='btn btn-outline-primary' data-toggle='modal' data-target='#modal-VerNotificacion' style='width: 100%;' onclick='btn_ver(" +
+      notificaciones[i].idNotificacion +
+      ");' > VER</button>";
+    var d = [
+      notificaciones[i].titulo,
+      getNameGrupo(notificaciones[i].Grupo_idGrupo),
+      b,
+    ];
     dataSet.push(d);
   }
 
@@ -85,25 +107,27 @@ function init() {
     if (this.readyState == 4 && this.status == 200) {
       const respuesta = JSON.parse(xml.responseText);
       if (respuesta.correcto) {
+        grups = respuesta.grupos;
         setGrupos(respuesta.grupos);
+
+        const xml2 = new XMLHttpRequest();
+        xml2.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            const respuesta = JSON.parse(xml2.responseText);
+            if (respuesta.correcto) {
+              noti = respuesta.notificaciones;
+              setNoti(respuesta.notificaciones);
+            }
+          }
+        };
+        xml2.open("GET", "php/notificacion.php", true);
+        xml2.send();
       }
     }
   };
 
   xml.open("GET", "php/grupo.php", true);
   xml.send();
-
-  const xml2 = new XMLHttpRequest();
-  xml2.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const respuesta = JSON.parse(xml2.responseText);
-      if (respuesta.correcto) {
-        setNoti(respuesta.notificaciones);
-      }
-    }
-  };
-  xml2.open("GET", "php/notificacion.php", true);
-  xml2.send();
 }
 
 function resetNotificaciones() {
@@ -112,14 +136,17 @@ function resetNotificaciones() {
     if (this.readyState == 4 && this.status == 200) {
       const respuesta = JSON.parse(xml3.responseText);
       if (respuesta.correcto) {
+        noti = respuesta.notificaciones;
         notificaciones = respuesta.notificaciones;
         dataSet = [];
         for (var i = 0; i < notificaciones.length; i++) {
           var b =
-            "<button type='button' class='btn btn-outline-primary' data-toggle='modal' data-target='#modal-VerNotificacion' style='width: 100%;'> VER</button>";
+            "<button type='button' class='btn btn-outline-primary' data-toggle='modal' data-target='#modal-VerNotificacion' style='width: 100%;' onclick='btn_ver(" +
+            notificaciones[i].idNotificacion +
+            ");' > VER</button>";
           var d = [
             notificaciones[i].titulo,
-            notificaciones[i].idNotificacion,
+            getNameGrupo(notificaciones[i].Grupo_idGrupo),
             b,
           ];
           dataSet.push(d);
@@ -139,7 +166,7 @@ function setTablaData() {
   $("#example1")
     .DataTable({
       data: dataSet,
-      columns: [{ title: "Autor" }, { title: "Grupo" }, { title: "Acción" }],
+      columns: [{ title: "Asunto" }, { title: "Grupo" }, { title: "Acción" }],
       language: {
         decimal: "",
         emptyTable: "No hay información",
@@ -189,4 +216,12 @@ function timestamp() {
     colon +
     pad(d.getSeconds())
   );
+}
+
+function getNameGrupo(id) {
+  for (var i = 0; i < grups.length; i++) {
+    if (grups[i].idGrupo == id) {
+      return grups[i].nombre;
+    }
+  }
 }
