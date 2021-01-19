@@ -111,148 +111,6 @@
                           <th>Acción</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>Becas</td>
-                          <td>Para becas</td>
-                          <td
-                            style="text-align: center; vertical-align: middle"
-                          >
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary"
-                              data-toggle="modal"
-                              data-target="#modal-Asignar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-user-friends"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-pencil-alt"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-danger"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Credenciales</td>
-                          <td>Para nuevo ingreso</td>
-                          <td
-                            style="text-align: center; vertical-align: middle"
-                          >
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary"
-                              data-toggle="modal"
-                              data-target="#modal-Asignar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-user-friends"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-pencil-alt"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-danger"
-                              style="width: 32%"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              <i class="nav-icon fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>BEIFI</td>
-                          <td>Para becas BEIFI</td>
-                          <td
-                            style="text-align: center; vertical-align: middle"
-                          >
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary"
-                              data-toggle="modal"
-                              data-target="#modal-Asignar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-user-friends"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-pencil-alt"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-danger"
-                              style="width: 32%"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              <i class="nav-icon fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Delfín</td>
-                          <td>Grupo Delfín</td>
-                          <td
-                            style="text-align: center; vertical-align: middle"
-                          >
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary"
-                              data-toggle="modal"
-                              data-target="#modal-Asignar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-user-friends"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-success"
-                              data-toggle="modal"
-                              data-target="#modal-Actualizar"
-                              style="width: 32%"
-                            >
-                              <i class="nav-icon fas fa-pencil-alt"></i>
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-outline-danger"
-                              style="width: 32%"
-                              data-toggle="modal"
-                              data-target="#modal-Eliminar"
-                            >
-                              <i class="nav-icon fas fa-trash-alt"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
                       <tfoot>
                         <tr>
                           <th>Nombre</th>
@@ -299,6 +157,7 @@
               type="text"
               class="form-control"
               placeholder="Digite un nombre"
+              id="a_nombre"
             />
             <br />
             <label>Descripción</label>
@@ -306,13 +165,14 @@
               type="text"
               class="form-control"
               placeholder="Digite una descripción"
+              id="a_descripcion"
             />
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" id="a_btn-enviar">
               Guardar cambios
             </button>
           </div>
@@ -360,6 +220,7 @@
               type="text"
               class="form-control"
               placeholder="Digite un nombre"
+              id="nombre"
             />
             <br />
             <label>Descripción</label>
@@ -367,12 +228,13 @@
               type="text"
               class="form-control"
               placeholder="Digite una descripción"
+              id="descripcion"
             />
           </div>
           <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">
               Cerrar
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary" id="btn-enviar">
                 Guardar cambios
               </button>
             </button>
