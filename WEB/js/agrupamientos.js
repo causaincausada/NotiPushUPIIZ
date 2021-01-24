@@ -39,6 +39,12 @@ function editar_Grupo(id) {
 
 function agrupar_Grupo(id) {
   idGrupoSelect = id;
+  for (var i = 0; i < grupos.length; i++) {
+    if (grupos[i].idGrupo == id) {
+      document.getElementById("label-asignar").innerText = "Asignar a grupo: " + grupos[i].nombre;
+      break;
+    }
+  }
   actualizar_alumnos();
   actualizar_agrupamiento();
 }
