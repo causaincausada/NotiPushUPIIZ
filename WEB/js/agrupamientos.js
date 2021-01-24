@@ -341,13 +341,3 @@ document.getElementById("btn_eliminar").addEventListener(
   },
   false
 );
-
-document.getElementById("btn_agrup").addEventListener(
-  "click",
-  function () {
-    $(function () {
-      $("#modal-Asignar").modal("toggle");
-    });
-  },
-  false
-);
