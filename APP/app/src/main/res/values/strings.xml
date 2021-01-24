@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NotiPushUPIIZ</string>
+    <string name="notipush">NotiPush</string>
+    <string name="ingrese_su_boleta">Ingrese su boleta</string>
+    <string name="logo">logo</string>
+    <string name="seleccionar">Seleccionar si es alumno o PAAE</string>
+    <string name="continuar">CONTINUAR</string>
 </resources>

@@ -46,7 +46,7 @@
         }
 
         $respuesta['error'] = false;
-        $respuesta['data'] = $rows;
+        $respuesta['data_alumno'] = $rows;
         echo json_encode($respuesta);
     }
 
