@@ -41,7 +41,8 @@ function agrupar_Grupo(id) {
   idGrupoSelect = id;
   for (var i = 0; i < grupos.length; i++) {
     if (grupos[i].idGrupo == id) {
-      document.getElementById("label-asignar").innerText = "Asignar a grupo: " + grupos[i].nombre;
+      document.getElementById("label-asignar").innerText =
+        "Asignar a grupo: " + grupos[i].nombre;
       break;
     }
   }
@@ -91,21 +92,23 @@ function borrarUsuAgrupamiento(id) {
 }
 
 function borrarUsuario(id) {
-  const xml1 = new XMLHttpRequest();
-  xml1.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const respuesta = JSON.parse(xml1.responseText);
-      if (respuesta.correcto) {
-        actualizar_alumnos();
-      } else {
-        alert(
-          "No puede eliminar este usuario, primero debe ser eliminado de todos los grupos."
-        );
+  if (confirm("¿Está seguro de que desea eliminar este usuario?")) {
+    const xml1 = new XMLHttpRequest();
+    xml1.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const respuesta = JSON.parse(xml1.responseText);
+        if (respuesta.correcto) {
+          actualizar_alumnos();
+        } else {
+          alert(
+            "No puede eliminar este usuario, primero debe ser eliminado de todos los grupos."
+          );
+        }
       }
-    }
-  };
-  xml1.open("DELETE", "php/usuario.php?idUsuario=" + id, true);
-  xml1.send();
+    };
+    xml1.open("DELETE", "php/usuario.php?idUsuario=" + id, true);
+    xml1.send();
+  }
 }
 
 function actualizar_alumnos() {
@@ -122,7 +125,7 @@ function actualizar_alumnos() {
             +usuarios[i].idUsuario +
             ")'>" +
             "<i class='nav-icon fas fa-trash-alt'></i></button>";
-            
+
           a +=
             "<button type='button' style='width: 49%' class='btn btn-outline-primary' onclick='addAgrupamiento(" +
             +usuarios[i].idUsuario +
