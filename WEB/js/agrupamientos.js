@@ -118,16 +118,16 @@ function actualizar_alumnos() {
         var usuarios = respuesta.usuarios;
         for (var i = 0; i < usuarios.length; i++) {
           var a =
-            "<button type='button' style='width: 49%' class='btn btn-outline-primary' onclick='addAgrupamiento(" +
-            +usuarios[i].idUsuario +
-            ")'>" +
-            "<i class='nav-icon fas fa-tasks'></i></button>";
-
-          a +=
             "<button type='button' style='width: 49%' class='btn btn-outline-danger' onclick='borrarUsuario(" +
             +usuarios[i].idUsuario +
             ")'>" +
             "<i class='nav-icon fas fa-trash-alt'></i></button>";
+            
+          a +=
+            "<button type='button' style='width: 49%' class='btn btn-outline-primary' onclick='addAgrupamiento(" +
+            +usuarios[i].idUsuario +
+            ")'>" +
+            "<i class='nav-icon fas fa-tasks'></i></button>";
 
           var d = [usuarios[i].nombrecompleto, usuarios[i].tipo, a];
           dataSet.push(d);
