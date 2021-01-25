@@ -89,12 +89,12 @@
         
         $link=connect();
         $consulta="INSERT INTO programa(idPrograma, Nombre, Descripcion) SELECT NULL, '". $programa ."', NULL FROM dual WHERE NOT EXISTS( SELECT 1 FROM programa WHERE Nombre = '". $programa ."')";
-        mysqli_query($link, $consulta) or error_Consulta();
+        mysqli_query($link, $consulta) or error_Consulta2();
         mysqli_close($link);
 
         $link=connect();
         $consulta="SELECT `idPrograma` FROM `programa` WHERE `Nombre` LIKE '". $programa ."'";
-        $r = mysqli_query($link, $consulta) or error_Consulta();
+        $r = mysqli_query($link, $consulta) or error_Consulta2();
         mysqli_close($link);
 
         $rows = array();
@@ -104,15 +104,20 @@
         $idPrograma = $rows[0]['idPrograma'];
 
         $link=connect();
-        $consulta="INSERT INTO `usuario` (`idUsuario`, `nombrecompleto`, `boleta`, `token`, `tipo`, `Programa_idPrograma`) VALUES (NULL, '". $nombrecompleto ."', '". $boleta ."', '". $token ."', '". $tipo ."', '". $idPrograma ."')";
-        mysqli_query($link, $consulta) or error_Consulta();
+        $consulta="INSERT INTO usuario(`idUsuario`, `nombrecompleto`, `boleta`, `token`, `tipo`, `Programa_idPrograma`) SELECT NULL, '". $nombrecompleto ."' , '". $boleta ."', '". $token ."', '". $tipo ."', ". $idPrograma ." FROM dual WHERE NOT EXISTS( SELECT 1 FROM usuario WHERE `boleta` = '" . $boleta ."')";
+        mysqli_query($link, $consulta) or error_Consulta2();
         mysqli_close($link);
         
         $link=connect();
-        $consulta="SELECT `idUsuario` FROM `usuario` WHERE `token` LIKE '". $token ."'";
-        $r2 = mysqli_query($link, $consulta) or error_Consulta();
+        $consulta="UPDATE `usuario` SET `token` = '". $token ."' WHERE `usuario`.`boleta` = '". $boleta ."'";
+        mysqli_query($link, $consulta) or error_Consulta2();
         mysqli_close($link);
-        
+
+        $link=connect();
+        $consulta="SELECT `idUsuario` FROM `usuario` WHERE `usuario`.`boleta` = '". $boleta ."'";
+        $r2 = mysqli_query($link, $consulta) or error_Consulta2();
+        mysqli_close($link);
+
         $rows2 = array();
         while ($a = mysqli_fetch_assoc($r2)) {
             $rows2[] = $a;
@@ -163,6 +168,15 @@
     {
         $respuesta = array();
         $respuesta['correcto']= false;
+        echo json_encode($respuesta);
+        die;
+    }
+
+    function error_Consulta2()
+    {
+        $respuesta = array();
+        $respuesta['error'] = true;
+        $respuesta['error_Mensaje'] = "Error en la consulta sql";
         echo json_encode($respuesta);
         die;
     }

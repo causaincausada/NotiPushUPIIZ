@@ -26,10 +26,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import JSON_IN.Alumno_JSON;
 import JSON_IN.Empleado_JSON;
+import JSON_IN.login_JSON;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
                                     data_programa = respuesta_alumno.getData_alumno().get(0).getPrograma();
                                     data_tipo = sp_Tipo.getSelectedItem().toString();
                                     getToken();
-                                    loginWeb();
+                                    try {
+                                        loginWeb();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Alumno no encontrado, verifique su boleta.", Toast.LENGTH_LONG).show();
                                 }
@@ -108,7 +114,11 @@ public class MainActivity extends AppCompatActivity {
                                     data_programa = respuesta_empleado.getData_empleado().get(0).getPrograma();
                                     data_tipo = sp_Tipo.getSelectedItem().toString();
                                     getToken();
-                                    loginWeb();
+                                    try {
+                                        loginWeb();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Empleado no encontrado, verifique su número de trabajador.", Toast.LENGTH_LONG).show();
                                 }
@@ -125,81 +135,59 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void loginWeb(){
+    private void loginWeb() throws JSONException {
         SharedPreferences preferences = getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.69/api/empleado.php";
-        int metodo = 0;
+        String url = "http://10.0.2.2/NotiPushUPIIZ/WEB/php/usuario.php";
+        int metodo = Request.Method.POST;
         JSONObject parametros = new JSONObject();
-        parametros.put("Nombre", nombre);
-        parametros.put("Usuario", usuario);
-        parametros.put("Contrasena", contrasena);
-        if (opcion == MenuApp.ALTA) {
-            metodo = Request.Method.POST;
-            parametros.put("ID_Creador", "" + iD_Sesion);
-        } else if (opcion == MenuApp.ACTUALIZAR) {
-            metodo = Request.Method.PUT;
-            url += "?ID=" + iD_Usuario;
-        }
+        parametros.put("nombrecompleto", data_nombre);
+        parametros.put("boleta", data_boleta);
+        parametros.put("token", token);
+        parametros.put("tipo", data_tipo);
+        parametros.put("programa", data_programa);
 
         JsonObjectRequest jsonobj = new JsonObjectRequest(metodo, url, parametros,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Gson json_ExisteUsuario = new Gson();
-                        Respuesta_Simple_JSON respuesta = json_ExisteUsuario.fromJson("" + response, Respuesta_Simple_JSON.class);
+                        Gson json_login = new Gson();
+                        login_JSON respuesta = json_login.fromJson("" + response, login_JSON.class);
                         if (respuesta.getError()) {
-                            Toast.makeText(getApplicationContext(), getString(R.string.error_API) + " " + respuesta.getError_Mensaje(), Toast.LENGTH_LONG).show();
-
-                            String mensaje_error = "";
-                            if (opcion == MenuApp.ALTA) {
-                                mensaje_error = getString(R.string.alta_error);
-                            } else if (opcion == MenuApp.ACTUALIZAR) {
-                                mensaje_error = getString(R.string.actualizar_error);
-                            }
-                            Toast.makeText(getApplicationContext(), mensaje_error, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), respuesta.getError_Mensaje(), Toast.LENGTH_LONG).show();
                         } else {
-                            String mensaje_exito = "";
-                            if (opcion == MenuApp.ALTA) {
-                                mensaje_exito = getString(R.string.alta_ok);
-                            } else if (opcion == MenuApp.ACTUALIZAR) {
-                                mensaje_exito = getString(R.string.actulizar_ok);
-                            }
-                            Toast.makeText(getApplicationContext(), mensaje_exito, Toast.LENGTH_LONG).show();
+                            editor.putBoolean("logeado", true);
+                            editor.putString("idUsuario", respuesta.getIdUsuario());
+                            editor.putString("nombrecompleto", data_nombre);
+                            editor.putString("boleta", data_boleta);
+                            editor.putString("token", token);
+                            editor.putString("tipo", data_tipo);
+                            editor.putString("programa", data_programa);
+
+
                         }
-                        volverMenu();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), getString(R.string.error_Volley_API), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Error al conectarse a los servidores.", Toast.LENGTH_LONG).show();
                     }
                 }
         );
         queue.add(jsonobj);
-
-        /*if (respuesta.getError()) {
-                            Toast.makeText(getApplicationContext(), getString(R.string.error_API) + " " + respuesta.getError_Mensaje(), Toast.LENGTH_LONG).show();
-                        } else {
-                            editor.putBoolean("logeado", respuesta.getCorrect_Password());
-
-                            editor.commit();
-
-                            if (preferences.getBoolean("logeado", false)) {
-                                startActivity(new Intent(getApplicationContext(), MenuApp.class));
-                            } else {
-                                Toast.makeText(getApplicationContext(), getText(R.string.no_login), Toast.LENGTH_SHORT).show();
-                            }
-                        }*/
     }
 
     private void addListeners() {
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                login();
+                if(et_Boleta.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Campo boleta o número de empleado vacío.", Toast.LENGTH_LONG).show();
+                }else {
+                    login();
+                }
             }
         });
 

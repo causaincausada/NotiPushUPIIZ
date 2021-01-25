@@ -124,12 +124,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/ingrese_su_boleta"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:maxLength="10"
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline11"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <Button
         android:id="@+id/button_login"
