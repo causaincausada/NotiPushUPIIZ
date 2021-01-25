@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.notipushupiiz.ui.MiAdaptador;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
@@ -24,11 +25,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import JSON_IN.GetNotis;
 import JSON_IN.Grupo;
 import JSON_IN.Notificacion;
+import JSON_IN.NotisyGrups;
 
 public class MenuApp extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener{
     private final String nombre_archivo = "credenciales";
@@ -42,6 +45,8 @@ public class MenuApp extends AppCompatActivity implements NavigationView.OnNavig
     private NavigationView mNavigationView;
     private List<Notificacion> notificaciones;
     private List<Grupo> grupos;
+    private ArrayList<NotisyGrups> notisyGrups;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,8 +95,22 @@ public class MenuApp extends AppCompatActivity implements NavigationView.OnNavig
     }
 
     private void mostrar_Lista() {
-        ArrayAdapter miAdaptador = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, this.notificaciones);
+        notisyGrups = new ArrayList<>();
+        for (int i = 0; i < this.notificaciones.size(); i++){
+            String grup = getGrup(notificaciones.get(i).getGrupo_idGrupo());
+            Notificacion temp = notificaciones.get(i);
+            notisyGrups.add(new NotisyGrups(temp.getIdNotificacion(), temp.getTitulo(), temp.getDescripcion(), temp.getFecha(), grup));
+        }
+
+        MiAdaptador miAdaptador = new MiAdaptador(getApplicationContext(), R.layout.noti_diseno, this.notisyGrups);
         lv_noti.setAdapter(miAdaptador);
+    }
+
+    private String getGrup(String id){
+        for (int i=0; i<this.grupos.size(); i++){
+            if(id.equals(grupos.get(i).getIdGrupo())) return grupos.get(i).getNombre();
+        }
+        return "";
     }
 
     private void setItemsMenu() {

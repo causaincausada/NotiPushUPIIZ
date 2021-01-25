@@ -1,18 +1,18 @@
 package JSON_IN;
 
-public class Notificacion {
+public class NotisyGrups {
     private final String idNotificacion;
     private final String titulo;
     private final String descripcion;
     private final String fecha;
-    private final String Grupo_idGrupo;
+    private final String Grupo;
 
-    public Notificacion(String idNotificacion, String titulo, String descripcion, String fecha, String grupo_idGrupo) {
+    public NotisyGrups(String idNotificacion, String titulo, String descripcion, String fecha, String grupo) {
         this.idNotificacion = idNotificacion;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fecha = fecha;
-        Grupo_idGrupo = grupo_idGrupo;
+        Grupo = grupo;
     }
 
     public String getIdNotificacion() {
@@ -31,7 +31,7 @@ public class Notificacion {
         return fecha;
     }
 
-    public String getGrupo_idGrupo() {
-        return Grupo_idGrupo;
+    public String getGrupo() {
+        return Grupo;
     }
 }

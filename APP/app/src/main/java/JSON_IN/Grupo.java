@@ -1,37 +1,25 @@
 package JSON_IN;
 
 public class Grupo {
-    private final String idNotificacion;
-    private final String titulo;
+    private final String idGrupo;
+    private final String nombre;
     private final String descripcion;
-    private final String fecha;
-    private final String Grupo_idGrupo;
 
-    public Grupo(String idNotificacion, String titulo, String descripcion, String fecha, String grupo_idGrupo) {
-        this.idNotificacion = idNotificacion;
-        this.titulo = titulo;
+    public Grupo(String idGrupo, String nombre, String descripcion) {
+        this.idGrupo = idGrupo;
+        this.nombre = nombre;
         this.descripcion = descripcion;
-        this.fecha = fecha;
-        Grupo_idGrupo = grupo_idGrupo;
     }
 
-    public String getIdNotificacion() {
-        return idNotificacion;
+    public String getIdGrupo() {
+        return idGrupo;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNombre() {
+        return nombre;
     }
 
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public String getGrupo_idGrupo() {
-        return Grupo_idGrupo;
     }
 }
