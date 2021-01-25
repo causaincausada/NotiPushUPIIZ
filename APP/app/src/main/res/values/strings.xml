@@ -16,4 +16,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="salir">Salir</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="boleta">boleta</string>
+    <string name="nombre">nombre</string>
 </resources>
