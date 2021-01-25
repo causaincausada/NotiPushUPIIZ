@@ -1,6 +1,7 @@
 package com.example.notipushupiiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         checkLogin();
+        getToken();
         enlazarVistas();
         addListeners();
     }
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkLogin() {
         SharedPreferences preferences = getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);//Nombre del archivo
         if (preferences.getBoolean("logeado", false)) {
-            //startActivity(new Intent(getApplicationContext(), MenuApp.class));
+            startActivity(new Intent(getApplicationContext(), MenuApp.class));
         }
     }
 
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                                     data_boleta = respuesta_alumno.getData_alumno().get(0).getBoleta();
                                     data_programa = respuesta_alumno.getData_alumno().get(0).getPrograma();
                                     data_tipo = sp_Tipo.getSelectedItem().toString();
-                                    getToken();
+
                                     try {
                                         loginWeb();
                                     } catch (JSONException e) {
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                                     data_boleta = respuesta_empleado.getData_empleado().get(0).getNumempleado();
                                     data_programa = respuesta_empleado.getData_empleado().get(0).getPrograma();
                                     data_tipo = sp_Tipo.getSelectedItem().toString();
-                                    getToken();
+
                                     try {
                                         loginWeb();
                                     } catch (JSONException e) {
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         parametros.put("token", token);
         parametros.put("tipo", data_tipo);
         parametros.put("programa", data_programa);
-
+        System.out.println(parametros.toString());
         JsonObjectRequest jsonobj = new JsonObjectRequest(metodo, url, parametros,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -165,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
                             editor.putString("token", token);
                             editor.putString("tipo", data_tipo);
                             editor.putString("programa", data_programa);
-
-
+                            editor.commit();
+                            startActivity(new Intent(getApplicationContext(), MenuApp.class));
                         }
                     }
                 },

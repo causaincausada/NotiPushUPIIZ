@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.notipushupiiz">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,12 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotiPushUPIIZ"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MenuApp"
+            android:label="@string/title_activity_menu_app"
+            android:theme="@style/Theme.NotiPushUPIIZ.NoActionBar"></activity>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_baseline_person_add_24" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/purple_200" />
+
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
             android:exported="false">
@@ -23,6 +31,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
