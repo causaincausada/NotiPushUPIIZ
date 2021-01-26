@@ -81,13 +81,13 @@
         $fecha = $datos->fecha;
         $Grupo_idGrupo = $datos->Grupo_idGrupo;
 
-        $link=connect();//
+        $link=connect();
         $sentencia="INSERT INTO `notificacion` (`idNotificacion`, `titulo`, `descripcion`, `fecha`, `Grupo_idGrupo`) VALUES (NULL, '".$titulo."', '".$descripcion."', '".$fecha."', '".$Grupo_idGrupo."')";
         $BD= mysqli_query($link, $sentencia) or error_Consulta();
-        mysqli_close($link);//
+        mysqli_close($link);
 
-        $link=connect();//
-        $consulta="SELECT `token` FROM `usuario` WHERE 1";
+        $link=connect();
+        $consulta="SELECT `token` FROM `agrupamiento` INNER JOIN `usuario` ON `Grupo_idGrupo`=". $Grupo_idGrupo ." AND `idUsuario` = `Usuario_idUsuario`";
         $resultado = mysqli_query($link, $consulta) or error_Consulta();
         mysqli_close($link);
     
@@ -96,14 +96,9 @@
             $notificaciones[] = $notificacion;
         }
 
-        $n = array();
-
-        foreach ($notificaciones as &$valor) {
-            $n[] = $valor['token'];
+        for ($i = 0; $i < sizeof($notificaciones); $i++) {
+            sendGCM($descripcion, $notificaciones[$i]['token'], $titulo);
         }
-
-        $a = "fAcsIVxlQoiGmIXo2_RTdm:APA91bEfpL3fchyZCXSTBKTpm977haAXxC7WkBY970aN0_9pTV0oUDoYnhIMVd8NYMUkY-w3tw1eO";
-        //sendGCM($descripcion, $a);
 
         $respuesta['correcto']= true;
         echo json_encode($respuesta);
@@ -117,15 +112,16 @@
         die;
     }
 
-    function sendGCM($message, $id) {
+    function sendGCM($message, $id, $titulo) {
         $url = 'https://fcm.googleapis.com/fcm/send';
     
         $fields = array (
                 'registration_ids' => array (
                         $id
                 ),
-                'data' => array (
-                        "message" => $message
+                'notification' => array (
+                    "title" => $titulo,
+                    "body" => $message
                 )
         );
         $fields = json_encode ( $fields );
@@ -143,6 +139,6 @@
         curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
     
         $result = curl_exec ( $ch );
-        echo $result;
+        //echo $result;
         curl_close ( $ch );
     }

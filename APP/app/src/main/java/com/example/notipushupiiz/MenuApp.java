@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +33,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import JSON_IN.Alumno_JSON;
 import JSON_IN.Empleado_JSON;
@@ -69,6 +72,27 @@ public class MenuApp extends AppCompatActivity implements NavigationView.OnNavig
         addListeners();
         setItemsMenu();
         getNoti();
+
+
+        final Handler handler = new Handler();
+        Timer timer = new Timer();
+        TimerTask doTask = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @SuppressWarnings("unchecked")
+                    public void run() {
+                        try {
+                            getNoti();
+                        }
+                        catch (Exception e) {
+
+                        }
+                    }
+                });
+            }
+        };
+        timer.schedule(doTask, 0, 7000);
     }
 
     private void getNoti() {

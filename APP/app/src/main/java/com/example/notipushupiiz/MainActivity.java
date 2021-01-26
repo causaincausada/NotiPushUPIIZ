@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         token = task.getResult();
+                        System.out.println(token);
                     }
                 });
     }
