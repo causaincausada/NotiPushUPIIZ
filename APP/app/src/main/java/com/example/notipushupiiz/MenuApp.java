@@ -28,13 +28,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import JSON_IN.Alumno_JSON;
+import JSON_IN.Empleado_JSON;
 import JSON_IN.GetNotis;
 import JSON_IN.Grupo;
 import JSON_IN.Notificacion;
 import JSON_IN.NotisyGrups;
+import JSON_IN.clear_token;
+import JSON_IN.login_JSON;
 
 public class MenuApp extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener{
     private final String nombre_archivo = "credenciales";
@@ -174,10 +180,32 @@ public class MenuApp extends AppCompatActivity implements NavigationView.OnNavig
                 break;
 
             case R.id.nav_gallery://Salir
-                
-                SharedPreferences preferences = getApplicationContext().getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);
-                preferences.edit().clear().commit();
-                finish();
+
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                String url = "http://10.0.2.2/NotiPushUPIIZ/WEB/php/clear_token.php?idUsuario=" + idUsuario;
+
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Gson api_JSON = new Gson();
+                                clear_token respuesta = api_JSON.fromJson("" + response, clear_token.class);
+                                if (respuesta.getCorrecto()) {
+                                    SharedPreferences preferences = getApplicationContext().getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);
+                                    preferences.edit().clear().commit();
+                                    finish();
+                                }else {
+                                    Toast.makeText(getApplicationContext(), "Error al limpiar token.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Error, Inténtelo otra vez.", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                queue.add(stringRequest);
                 break;
         }
         return false;
