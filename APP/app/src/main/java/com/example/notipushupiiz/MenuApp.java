@@ -1,6 +1,7 @@
 package com.example.notipushupiiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -24,6 +25,8 @@ import com.google.gson.Gson;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,11 +155,45 @@ public class MenuApp extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Intent intent = new Intent(getApplicationContext(), VerNotificacion.class);
+        intent.putExtra("grupo", notisyGrups.get(position).getGrupo());
+        intent.putExtra("titulo", notisyGrups.get(position).getTitulo());
+        intent.putExtra("fecha", notisyGrups.get(position).getFecha());
+        intent.putExtra("descripcion", notisyGrups.get(position).getDescripcion());
+        startActivity(intent);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        DrawerLayout menuDrawer = findViewById(R.id.drawer_layout);
+        menuDrawer.closeDrawer(GravityCompat.START);
+        switch (id){
+            case R.id.nav_home://Notis
+                getNoti();
+                break;
+
+            case R.id.nav_gallery://Salir
+                SharedPreferences preferences = getApplicationContext().getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);
+                preferences.edit().clear().commit();
+                finish();
+                break;
+        }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        // Not calling **super**, disables back button in current screen.
+    }
+
+    @Override
+    public void onStart() {
+        SharedPreferences preferences = getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);//Nombre del archivo
+        if (!preferences.getBoolean("logeado", false)) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        super.onStart();
     }
 }

@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotiPushUPIIZ"
         android:usesCleartextTraffic="true">
+        <activity android:name=".VerNotificacion"></activity>
         <activity
             android:name=".MenuApp"
             android:label="@string/title_activity_menu_app"
-            android:theme="@style/Theme.NotiPushUPIIZ.NoActionBar"></activity>
+            android:theme="@style/Theme.NotiPushUPIIZ.NoActionBar" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
