@@ -174,6 +174,7 @@ public class MenuApp extends AppCompatActivity implements NavigationView.OnNavig
                 break;
 
             case R.id.nav_gallery://Salir
+                
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences(nombre_archivo, Context.MODE_PRIVATE);
                 preferences.edit().clear().commit();
                 finish();
