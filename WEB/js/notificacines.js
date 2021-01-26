@@ -8,10 +8,10 @@ function btn_ver(id) {
   for (var i = 0; i < noti.length; i++) {
     if (noti[i].idNotificacion == id) {
       document.getElementById("label_asunto").innerText = noti[i].titulo;
-      document.getElementById("label_desti").innerText = noti[i].descripcion;
-      document.getElementById("label_des").innerText = getNameGrupo(
+      document.getElementById("label_desti").innerText = getNameGrupo(
         noti[i].Grupo_idGrupo
       );
+      document.getElementById("label_des").innerText = noti[i].descripcion;
       document.getElementById("label_date").innerText = noti[i].fecha;
       break;
     }
@@ -187,6 +187,7 @@ function setTablaData() {
           previous: "Anterior",
         },
       },
+      retrieve: true,
       responsive: true,
       lengthChange: true,
       autoWidth: false,

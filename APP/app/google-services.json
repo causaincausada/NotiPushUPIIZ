@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "700547431738",
+    "project_id": "notipushupiiz-3a1ed",
+    "storage_bucket": "notipushupiiz-3a1ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700547431738:android:1127fcfc122da386746403",
+        "android_client_info": {
+          "package_name": "com.example.notipushupiiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700547431738-rk8n56evt37h0l1rs6liuaol2b3m0guu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9rKdoHIj-DiRS0otxieKDtyFK3SU5nlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700547431738-rk8n56evt37h0l1rs6liuaol2b3m0guu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
